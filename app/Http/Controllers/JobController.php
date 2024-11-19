@@ -20,38 +20,12 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
-        $categories = Cache::remember('categories', 3600, function () {
-            return CompanyCategory::all();
-        });
+        $categories = CompanyCategory::all();
 
         $provinces = $this->getProvinces();
 
-<<<<<<< HEAD
-        if ($request->q) {
-            $posts = $posts->where('job_title', 'LIKE', '%' . $request->q . '%')->orWhere('skills', 'LIKE', '%' . $request->q . '%');
-        }
-        if ($request->category_id) {
-            $posts = $posts->whereHas('company', function ($query) use ($request) {
-                $query->where('company_category_id', $request->category_id);
-            });
-        }
-        if ($request->job_level) {
-            $posts = $posts->where('job_level', 'LIKE', '%' . $request->job_level . '%');
-        }
-        if ($request->education_level) {
-            $posts = $posts->where('education_level', 'LIKE', '%' . $request->education_level . '%');
-        }
-        if ($request->employment_type) {
-            $posts = $posts->where('employment_type', 'LIKE', '%' . $request->employment_type . '%');
-        }
-        if ($request->job_location) {
-            $posts = $posts->where('job_location', 'LIKE', '%' . $request->job_location . '%');
-        }
-
-        $posts = $posts->has('company')->with('company')->orderBy('views', 'desc')->paginate(6);
-=======
         $posts = Post::query()
-            ->with('company') // Eager Loading để giảm số query
+            ->with('company')
             ->when($request->q, function ($query, $q) {
                 return $query->where(function ($qBuilder) use ($q) {
                     $qBuilder->where('job_title', 'LIKE', "%$q%")
@@ -71,16 +45,13 @@ class JobController extends Controller
             ->orderBy('views', 'desc')
             ->paginate(6);
 
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
         return view('job.index', compact('posts', 'categories', 'provinces'));
     }
 
     public function getProvinces()
     {
 
-        $dataObject = Cache::remember('provinces', 86400, function () {
-            return $this->provinceService->getProvinces();
-        });
+        $dataObject = $this->provinceService->getProvinces();
 
 
         if (!$dataObject || empty($dataObject['results'])) {
@@ -102,9 +73,7 @@ class JobController extends Controller
     public function getAllOrganization()
     {
 
-        $companies = Cache::remember('all_companies', 3600, function () {
-            return Company::all();
-        });
+        $companies = Company::all();
 
         return response()->json($companies);
     }

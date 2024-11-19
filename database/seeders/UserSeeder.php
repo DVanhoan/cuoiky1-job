@@ -15,13 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-=======
-        // Xóa tất cả các bản ghi trong bảng users trước khi thêm dữ liệu mới
-        User::truncate();
-
-        // Danh sách các user mới
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
         $factoryUsers = [
             [
                 'name' => 'admin user',
@@ -49,11 +42,7 @@ class UserSeeder extends Seeder
                 'name' => 'Ngoc Hung',
                 'email' => 'hung@gmail.com',
                 'password' => '$2y$10$SqRXQvNtzBsR5OpBy7OiueMNpnuLvE8.mK7yI0IOiLInjCxTCXtkC',
-<<<<<<< HEAD
-                'role' => 'user',
-=======
                 'role' => 'author',
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
                 'avatar' => 'https://res.cloudinary.com/dfac3tvue/image/upload/v1731005605/ltvejr9nvpclcltdgfrb.png'
             ],
             [
@@ -74,44 +63,28 @@ class UserSeeder extends Seeder
                 'name' => 'google',
                 'email' => 'google@gmail.com',
                 'password' => '$2y$10$Cgay9zg4YBg9i/ib.uqasO4GrLiwDwmkyhdUAxOhqL.VsX4zQgn3W',
-<<<<<<< HEAD
-                'role' => 'user',
-=======
                 'role' => 'author',
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
                 'avatar' => null
             ],
             [
                 'name' => 'apple',
                 'email' => 'apple@gmail.com',
                 'password' => '$2y$10$vQzEVURtcN.zNO9N2SEmBuxy3OQ8x8M9CrzlePBFjQ0A8xPhR68my',
-<<<<<<< HEAD
-                'role' => 'user',
-=======
                 'role' => 'author',
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
                 'avatar' => null
             ],
             [
                 'name' => 'Nguen Manh',
                 'email' => 'manh@gmail.com',
                 'password' => '$2y$10$sog8OElPaF4imrmcyWJDdOJL2R08v36y1xB6UP3FhRyGOTbmIKTwq',
-<<<<<<< HEAD
-                'role' => 'user',
-=======
                 'role' => 'author',
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
                 'avatar' => null
             ],
             [
                 'name' => 'DVanhoan',
                 'email' => 'hoanv2208@gmail.com',
                 'password' => '$2y$10$xh/8r46OZJaapy213OEoH./1vLaThoPxswU0f4XaYFEr9LJgcxd7S',
-<<<<<<< HEAD
-                'role' => 'user',
-=======
                 'role' => 'author',
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
                 'avatar' => null
             ],
             [

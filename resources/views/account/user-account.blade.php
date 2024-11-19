@@ -85,15 +85,11 @@
 
 @push('css')
     <style>
-        /* Profile Image Container */
         .profile-img-container {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 180px;
+            height: 180px;
             overflow: hidden;
             position: relative;
-            border: 4px solid white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -130,7 +126,6 @@
         }
 
         .user-profile {
-            padding: 20px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.9);
         }
@@ -143,4 +138,16 @@
             border-radius: 10px;
         }
     </style>
+@endpush
+
+@push('scripts')
+    <script>
+        // Hiển thị ảnh tạm thời khi người dùng chọn file
+        document.getElementById('profileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('profileImg').src = URL.createObjectURL(file);
+            }
+        });
+    </script>
 @endpush

@@ -280,8 +280,11 @@
                             <div class="similar-jobs">
                                 @foreach ($similarJobs as $job)
                                     @if ($similarJobs)
+
                                         <div class="job-item border-bottom row">
+
                                             <div class="col-4">
+                                                <a href="{{ route('post.show', ['job' => $job]) }}">
                                                 <img
                                                     src="{{ asset($job->company->logo) }}"
                                                     class="company-logo"

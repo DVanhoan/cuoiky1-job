@@ -35,6 +35,8 @@ Route::get('/login/github/callback', function () {
             'password' => Hash::make($github_user->getId()),
         ]);
 
+        $newUser->assignRole('user');
+
         auth()->login($newUser, true);
     }
 
@@ -61,6 +63,8 @@ Route::get('/login/google/callback', function () {
             'google_id' => $google_user->getId(),
             'password' => Hash::make($google_user->getId()),
         ]);
+
+        $newUser->assignRole('user');
 
         auth()->login($newUser, true);
     }

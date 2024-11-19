@@ -21,13 +21,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::has('company')->with('company')->orderBy('views', 'desc')->paginate(12);
-<<<<<<< HEAD
-        $categories = CompanyCategory::take(5)->get();
-        $topEmployers = Company::latest()->take(6)->get();
-=======
         $categories = CompanyCategory::select('id', 'category_name')->take(5)->get();
         $topEmployers = Company::select('id', 'title', 'logo')->latest()->take(6)->get();
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
         return view('home')->with([
             'posts' => $posts,
             'categories' => $categories,
@@ -144,8 +139,4 @@ class PostController extends Controller
             'specifications' => 'nullable|string|min:5',
         ]);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> d2eb0ac4100e695c81459489a196af1aa897593d
 }
