@@ -17,8 +17,7 @@ class AuthorController extends Controller
 
         if ($this->hasCompany()) {
             $company = auth()->user()->company;
-            $posts = $company->posts()->paginate(10);
-
+            $posts = $company->posts()->get();
             if ($company->posts->count()) {
                 $livePosts = $posts->where('deadline', '>', Carbon::now())->count();
                 $ids = $posts->pluck('id');
@@ -29,8 +28,7 @@ class AuthorController extends Controller
         return view('account.author-section')->with([
             'company' => $company,
             'applications' => $applications,
-            'livePosts' => $livePosts,
-            'posts' => $posts
+            'livePosts' => $livePosts
         ]);
     }
     public function employer($id)

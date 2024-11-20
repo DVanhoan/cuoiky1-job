@@ -1,6 +1,6 @@
 <section class="bg-dark py-5">
     <footer class="container mx-auto d-flex flex-wrap justify-content-between align-items-start px-5">
-        <!-- Cột Logo và mô tả -->
+
         <div class="col-12 col-md-3 text-center text-md-start mb-4">
             <img src="{{ asset('Logo.svg') }}" alt="logo" class="invert img-fluid mb-3" />
             <p class="text-muted">
@@ -35,7 +35,7 @@
             </ul>
         </div>
 
-        <!-- Cột Tìm kiếm việc làm -->
+
         <div class="col-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">Search for jobs</h5>
             <ul class="list-unstyled mt-3">
@@ -47,7 +47,7 @@
             </ul>
         </div>
 
-        <!-- Cột Dành cho nhà tuyển dụng -->
+
         <div class="col-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">For employers</h5>
             <ul class="list-unstyled mt-3">
@@ -59,7 +59,7 @@
             </ul>
         </div>
 
-        <!-- Cột Về chúng tôi -->
+
         <div class="col-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">About</h5>
             <ul class="list-unstyled mt-3">
@@ -71,18 +71,10 @@
         </div>
     </footer>
 
-    <!-- Dòng bản quyền -->
-    <div class="container text-center mt-5">
-        <div class="bg-primary text-white p-3 rounded-circle d-inline-block">
-            <i class="fas fa-heart fa-lg"></i>
-        </div>
-        <p class="mt-3 text-muted">
-            Copyright © 2023. All rights reserved
-        </p>
-    </div>
+
 </section>
 
-<!-- Nút cuộn lên đầu trang -->
+
 <button onclick="scrollToTop()" id="scrollToTopBtn" class="scroll-to-top">
     <i class="fas fa-arrow-up"></i>
 </button>
@@ -135,7 +127,7 @@ footer .list-inline-item a:hover {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: #6c63ff;
+    background: #08036e;
     color: #fff;
     border: none;
     border-radius: 50%;
