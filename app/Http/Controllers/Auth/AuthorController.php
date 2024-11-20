@@ -9,7 +9,6 @@ use Carbon\Carbon;
 
 class AuthorController extends Controller
 {
-    /** Author dashboard */
     public function authorSection()
     {
         $livePosts = null;
@@ -17,9 +16,8 @@ class AuthorController extends Controller
         $applications = null;
 
         if ($this->hasCompany()) {
-            //without the if block the posts relationship returns error
             $company = auth()->user()->company;
-            $posts = $company->posts()->get();
+            $posts = $company->posts()->paginate(10);
 
             if ($company->posts->count()) {
                 $livePosts = $posts->where('deadline', '>', Carbon::now())->count();
@@ -28,22 +26,18 @@ class AuthorController extends Controller
             }
         }
 
-        //doesnt have company
         return view('account.author-section')->with([
             'company' => $company,
             'applications' => $applications,
-            'livePosts' => $livePosts
+            'livePosts' => $livePosts,
+            'posts' => $posts
         ]);
     }
-
-    // Author Employer panel
-    //employer is company of author
     public function employer($id)
     {
         $company = Company::with('posts')->find($id);
 
         if (!$company) {
-            // Nếu không tìm thấy công ty với ID này, có thể trả về 404 hoặc xử lý lỗi khác
             abort(404, 'Company not found');
         }
 
@@ -52,8 +46,6 @@ class AuthorController extends Controller
         ]);
     }
 
-
-    //check if has company
     protected function hasCompany()
     {
         return auth()->user()->company ? true : false;

@@ -1,13 +1,9 @@
 <section class="bg-dark py-5">
-    <footer class="container mx-auto row px-5">
-        {{-- Logo và giới thiệu --}}
-        <div class="col-12 col-md-4 mb-4 text-center text-md-start">
-            {{-- <img
-                src="{{ asset('Logo.svg') }}"
-                alt="logo"
-                class="invert img-fluid mx-auto d-block d-md-inline-block"
-            /> --}}
-            <p class="text-muted mt-3">
+    <footer class="container mx-auto d-flex flex-wrap justify-content-between align-items-start px-5">
+        <!-- Cột Logo và mô tả -->
+        <div class="col-12 col-md-3 text-center text-md-start mb-4">
+            <img src="{{ asset('Logo.svg') }}" alt="logo" class="invert img-fluid mb-3" />
+            <p class="text-muted">
                 Ehya is a job board and job site for job seekers and employers.
             </p>
             <ul class="list-inline mt-4">
@@ -39,65 +35,118 @@
             </ul>
         </div>
 
-        {{-- Cột Product --}}
-        <div class="col-6 col-md-2 mb-4">
-            <h5 class="text-light">Product</h5>
+        <!-- Cột Tìm kiếm việc làm -->
+        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+            <h5 class="text-light">Search for jobs</h5>
             <ul class="list-unstyled mt-3">
-                <li><a href="/" class="text-muted">Landingpage</a></li>
-                <li><a href="/" class="text-muted">Features</a></li>
-                <li><a href="/" class="text-muted">Documentation</a></li>
-                <li><a href="/" class="text-muted">Referral Program</a></li>
-                <li><a href="/" class="text-muted">Pricing</a></li>
+                <li><a href="{{ route('job.index') }}" class="text-muted">Job by location</a></li>
+                <li><a href="{{ route('job.index') }}" class="text-muted">Job by category</a></li>
+                <li><a href="{{ route('job.index') }}" class="text-muted">Job by company</a></li>
+                <li><a href="{{ route('job.index') }}" class="text-muted">Job by keyword</a></li>
+                <li><a href="{{ route('job.index') }}" class="text-muted">Job by salary</a></li>
             </ul>
         </div>
 
-        {{-- Cột Services --}}
-        <div class="col-6 col-md-2 mb-4">
-            <h5 class="text-light">Services</h5>
+        <!-- Cột Dành cho nhà tuyển dụng -->
+        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+            <h5 class="text-light">For employers</h5>
             <ul class="list-unstyled mt-3">
-                <li><a href="/" class="text-muted">Documentation</a></li>
-                <li><a href="/" class="text-muted">Design</a></li>
-                <li><a href="/" class="text-muted">Themes</a></li>
-                <li><a href="/" class="text-muted">Illustrations</a></li>
-                <li><a href="/" class="text-muted">UI Kit</a></li>
+                <li><a href="{{ route('post.create') }}" class="text-muted">Create job</a></li>
+                <li><a href="{{ route('account.authorSection') }}" class="text-muted">Manage job</a></li>
+                <li><a href="{{ route('jobApplication.index') }}" class="text-muted">Job applications</a></li>
+                <li><a href="{{ route('savedJob.index') }}" class="text-muted">Manage candidates</a></li>
+                <li><a href="{{ route('company.store') }}" class="text-muted">Manage company</a></li>
             </ul>
         </div>
 
-        {{-- Cột Company --}}
-        <div class="col-6 col-md-2 mb-4">
-            <h5 class="text-light">Company</h5>
+        <!-- Cột Về chúng tôi -->
+        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+            <h5 class="text-light">About</h5>
             <ul class="list-unstyled mt-3">
-                <li><a href="/" class="text-muted">About</a></li>
-                <li><a href="/" class="text-muted">Terms</a></li>
-                <li><a href="/" class="text-muted">Privacy Policy</a></li>
-                <li><a href="/" class="text-muted">Careers</a></li>
+                <li><a href="/" class="text-muted">About us</a></li>
+                <li><a href="/" class="text-muted">What we do</a></li>
+                <li><a href="/" class="text-muted">Our team</a></li>
+                <li><a href="/" class="text-muted">Contact</a></li>
             </ul>
-        </div>
-
-        {{-- Cột More --}}
-        <div class="col-6 col-md-2 mb-4">
-            <h5 class="text-light">More</h5>
-            <ul class="list-unstyled mt-3">
-                <li><a href="/" class="text-muted">Documentation</a></li>
-                <li><a href="/" class="text-muted">License</a></li>
-                <li><a href="/" class="text-muted">Changelog</a></li>
-            </ul>
-        </div>
-
-        {{-- Dòng bản quyền --}}
-        <div class="col-12 text-center mt-5">
-            <div
-                class="bg-primary text-white p-3 rounded-circle d-inline-block"
-            >
-                <a href="#" class="text-white"> 
-                <i class="fas fa-heart fa-lg"></i>
-            </div>
         </div>
     </footer>
-</section>
 
+    <!-- Dòng bản quyền -->
+    <div class="container text-center mt-5">
+        <div class="bg-primary text-white p-3 rounded-circle d-inline-block">
+            <i class="fas fa-heart fa-lg"></i>
+        </div>
+        <p class="mt-3 text-muted">
+            Copyright © 2023. All rights reserved
+        </p>
+    </div>
+</section>
 
 <!-- Nút cuộn lên đầu trang -->
 <button onclick="scrollToTop()" id="scrollToTopBtn" class="scroll-to-top">
     <i class="fas fa-arrow-up"></i>
 </button>
+
+
+<style>
+    footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+footer .col-md-3 img {
+    max-width: 150px;
+}
+
+footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+footer ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+footer ul li a:hover {
+    color: #fff;
+}
+
+footer .list-inline-item a {
+    transition: color 0.3s;
+}
+
+footer .list-inline-item a:hover {
+    color: #fff;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 0.75rem 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.scroll-to-top:hover {
+    background: #574bff;
+}
+
+</style>
