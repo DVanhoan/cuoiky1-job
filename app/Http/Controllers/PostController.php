@@ -13,9 +13,11 @@ use App\Http\Controllers\ProvinceController ;
 
 class PostController extends Controller
 {
+
     public function __construct(ProvinceController $provinceController){
         $this->provinceController = $provinceController;
     }
+
 
     public function index()
     {
