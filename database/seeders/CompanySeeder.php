@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Company;
 use App\Models\Post;
+use App\Models\Province;
 use Illuminate\Support\Facades\DB;
 use App\Services\ProvinceService;
 
@@ -129,12 +130,11 @@ class CompanySeeder extends Seeder
             'Cloud Engineer',
         ];
 
-        $locations = ProvinceService::getProvinces();
-        if ($locations && isset($locations['results'])) {
-            $locations = array_column($locations['results'], 'province_name');
-        } else {
-            $locations = ['Unknown'];
-        }
+        $locations = Province::pluck('name')->toArray();
+
+            if (empty($locations)) {
+                $locations = ['Unknown'];
+            }
 
         $levels = ['Junior level', 'Mid level', 'Senior level', 'Top level', 'Entry level'];
         $employments = ['Full Time', 'Part Time', 'Tnternship', 'Trainneship', 'Volunter', 'Freelance'];
@@ -182,8 +182,9 @@ class CompanySeeder extends Seeder
 
         $postCount = rand(1, 10);
 
+        $posts = [];
         for ($i = 0; $i < $postCount; $i++) {
-            Post::create([
+            $posts[] = [
                 'job_title' => $jobTitles[array_rand($jobTitles)],
                 'job_level' => $levels[array_rand($levels)],
                 'vacancy_count' => $vacancyCount,
@@ -197,7 +198,8 @@ class CompanySeeder extends Seeder
                 'experience' => $experiences[array_rand($experiences)],
                 'specifications' => $decription,
                 'views' => rand(1, 10000),
-            ]);
+            ];
         }
+        Post::insert($posts);
     }
 }

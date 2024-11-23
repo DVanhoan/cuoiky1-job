@@ -5,23 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\CompanyCategory;
 use App\Models\Post;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Services\ProvinceService;
 
 class JobController extends Controller
 {
-    private $provinceService;
+    
 
-    public function __construct(ProvinceService $provinceService)
-    {
-        $this->provinceService = $provinceService;
+    public function __construct(ProvinceController $provinceController){
+        $this->provinceController = $provinceController;
     }
 
     public function index(Request $request)
     {
         $categories = CompanyCategory::all();
 
-        $provinces = $this->getProvinces();
+        $provinces = $this->provinceController->getProvinces();
 
         $posts = Post::query()
             ->with('company')
@@ -47,26 +47,9 @@ class JobController extends Controller
         return view('job.index', compact('posts', 'categories', 'provinces'));
     }
 
-    public function getProvinces()
-    {
+    public function getProvinces(){
 
-        $dataObject = $this->provinceService->getProvinces();
-
-
-        if (!$dataObject || empty($dataObject['results'])) {
-            return [];
-        }
-
-
-        $provinces = collect($dataObject['results'])->map(function ($item) {
-            return (object) [
-                'id' => $item['province_id'],
-                'name' => $item['province_name'],
-                'type' => $item['province_type']
-            ];
-        })->all();
-
-        return $provinces;
+        return $this->provinceController->getProvinces();
     }
 
     public function getAllOrganization()

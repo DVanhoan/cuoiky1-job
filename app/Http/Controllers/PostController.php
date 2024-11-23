@@ -6,17 +6,18 @@ use App\Events\PostViewEvent;
 use App\Models\Company;
 use App\Models\CompanyCategory;
 use App\Models\Post;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Services\ProvinceService;
+use App\Http\Controllers\ProvinceController ;
 
 class PostController extends Controller
 {
-    private $provinceService;
-    public function __construct(ProvinceService $provinceService)
-    {
-        $this->provinceService = $provinceService;
+
+    public function __construct(ProvinceController $provinceController){
+        $this->provinceController = $provinceController;
     }
+
 
     public function index()
     {
@@ -32,15 +33,16 @@ class PostController extends Controller
 
     public function getProvinces()
     {
-        $dataObject = $this->provinceService->getProvinces();
+        // $dataObject = $this->provinceService->getProvinces();
+        // return array_map(function ($data) {
+        //     return (object) [
+        //         'id' => $data['province_id'],
+        //         'name' => $data['province_name'],
+        //         'type' => $data['province_type'],
+        //     ];
+        // }, $dataObject['results']);
 
-        return array_map(function ($data) {
-            return (object) [
-                'id' => $data['province_id'],
-                'name' => $data['province_name'],
-                'type' => $data['province_type']
-            ];
-        }, $dataObject['results']);
+        return $this->provinceController->getProvinces();
     }
 
 

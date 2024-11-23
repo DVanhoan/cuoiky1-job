@@ -53,7 +53,7 @@ class CompanyController extends Controller
 
             Alert::success('Company Created!', 'success');
             return redirect()->route('account.authorSection');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Alert::error('Failed to create company!', 'error');
             return redirect()->route('account.authorSection');
         }
@@ -113,9 +113,9 @@ class CompanyController extends Controller
         return $request->validate([
             'title' => 'required|min:5',
             'description' => 'required|min:5',
-            'logo' => 'required|image|max:2999',
+            'logo' => 'nullable|image|max:2999',
             'category' => 'required',
-            'website' => 'required|string',
+            'website' => 'required|string|url',
             'cover_img' => 'sometimes|image|max:3999|mimes:webp,png,jpg,jpeg,gif,svg'
         ]);
     }
