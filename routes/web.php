@@ -9,6 +9,7 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\savedJobController;
+use App\Http\Controllers\ProvinceController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -81,6 +82,8 @@ Route::get('employer/{id}', [AuthorController::class, 'employer'])->name('accoun
 Route::get('/search', [JobController::class, 'index'])->name('job.index');
 Route::get('job-titles', [JobController::class, 'getAllByTitle'])->name('job.getAllByTitle');
 Route::get('companies', [JobController::class, 'getAllOrganization'])->name('job.getAllOrganization');
+Route::get('/provinces', [ProvinceController::class, 'index']);
+
 
 
 Route::middleware('auth')->prefix('account')->group(function () {
