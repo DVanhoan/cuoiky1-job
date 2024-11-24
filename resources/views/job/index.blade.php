@@ -401,7 +401,11 @@
                                         <div class="d-inline float-right">
                                             <span class="text-muted mr-2">
                                                 <i class="fas fa-eye mr-1"></i>
-                                                Views: {{ $post->views }}
+                                                @if ($post->views > 1000)
+                                                Views:{{ round($post->views / 1000, 1) }}k
+                                                @else
+                                                Views:{{ $post->views }}
+                                                @endif
                                             </span>
                                         </div>
                                     </div>

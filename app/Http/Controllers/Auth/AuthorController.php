@@ -9,31 +9,35 @@ use Carbon\Carbon;
 
 class AuthorController extends Controller
 {
+
     public function authorSection()
     {
         $livePosts = null;
         $company = null;
         $applications = null;
-
+        $posts = null;
         if ($this->hasCompany()) {
             $company = auth()->user()->company;
-            $posts = $company->posts()->get();
+            $posts = $company->posts()->paginate(10);
+
             if ($company->posts->count()) {
                 $livePosts = $posts->where('deadline', '>', Carbon::now())->count();
                 $ids = $posts->pluck('id');
                 $applications = JobApplication::whereIn('post_id', $ids)->get();
             }
         }
-
         return view('account.author-section')->with([
             'company' => $company,
             'applications' => $applications,
-            'livePosts' => $livePosts
+            'livePosts' => $livePosts,
+            'posts' => $posts
         ]);
     }
+
     public function employer($id)
     {
-        $company = Company::with('posts')->find($id);
+        $company = Company::find($id);
+        $posts = $company->posts()->paginate(10);
 
         if (!$company) {
             abort(404, 'Company not found');
@@ -41,8 +45,10 @@ class AuthorController extends Controller
 
         return view('account.employer')->with([
             'company' => $company,
+            'posts' => $posts,
         ]);
     }
+
 
     protected function hasCompany()
     {

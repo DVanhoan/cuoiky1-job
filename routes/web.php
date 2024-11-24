@@ -79,15 +79,10 @@ Route::get('employer/{id}', [AuthorController::class, 'employer'])->name('accoun
 
 
 Route::get('/search', [JobController::class, 'index'])->name('job.index');
-Route::get('job-titles', [JobController::class, 'getAllByTitle'])->name('job.getAllByTitle');
-Route::get('companies', [JobController::class, 'getAllOrganization'])->name('job.getAllOrganization');
 
 
 Route::middleware('auth')->prefix('account')->group(function () {
-
     Route::post('/update-profile-image', [AccountController::class, 'updateProfile'])->name('account.updateProfileImage');
-
-
     Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
     Route::get('overview', [AccountController::class, 'index'])->name('account.index');
     Route::get('deactivate', [AccountController::class, 'deactivateView'])->name('account.deactivate');

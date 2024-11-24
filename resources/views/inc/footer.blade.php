@@ -36,7 +36,7 @@
         </div>
 
 
-        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+        <div class="col-12 col-sm-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">Search for jobs</h5>
             <ul class="list-unstyled mt-3">
                 <li><a href="{{ route('job.index') }}" class="text-muted">Job by location</a></li>
@@ -47,8 +47,7 @@
             </ul>
         </div>
 
-
-        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+        <div class="col-12 col-sm-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">For employers</h5>
             <ul class="list-unstyled mt-3">
                 <li><a href="{{ route('post.create') }}" class="text-muted">Create job</a></li>
@@ -59,8 +58,7 @@
             </ul>
         </div>
 
-
-        <div class="col-6 col-md-2 text-center text-md-start mb-4">
+        <div class="col-12 col-sm-6 col-md-2 text-center text-md-start mb-4">
             <h5 class="text-light">About</h5>
             <ul class="list-unstyled mt-3">
                 <li><a href="/" class="text-muted">About us</a></li>
