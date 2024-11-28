@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Company;
+use App\Models\Post;
+use App\Models\JobApplication;
 
 class User extends Authenticatable
 {
@@ -46,17 +49,16 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->hasOne('App\Models\Company');
+        return $this->hasOne(Company::class);
     }
 
-    //piviot for saved jobs
     public function posts()
     {
-        return $this->belongsToMany('App\Models\Post');
+        return $this->belongsToMany(Post::class);
     }
 
     public function applied()
     {
-        return $this->hasMany('App\Models\JobApplication');
+        return $this->hasMany(JobApplication::class);
     }
 }

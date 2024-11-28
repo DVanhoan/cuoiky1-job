@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CompanyCategory;
+use App\Models\Post;
 
 class Company extends Model
 {
@@ -11,10 +13,10 @@ class Company extends Model
 
     public function getCategory()
     {
-        return $this->hasOne('App\Models\CompanyCategory', 'id', 'company_category_id');
+        return $this->hasOne(CompanyCategory::class, 'id', 'company_category_id');
     }
     public function posts()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany(Post::class);
     }
 }

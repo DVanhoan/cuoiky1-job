@@ -8,14 +8,14 @@ use App\Models\CompanyCategory;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Services\ProvinceService;
+use App\Http\Controllers\ProvinceController;;
 
 class PostController extends Controller
 {
-    private $provinceService;
-    public function __construct(ProvinceService $provinceService)
+    private $provinceController;
+    public function __construct(ProvinceController $provinceController)
     {
-        $this->provinceService = $provinceService;
+        $this->provinceController = $provinceController;
     }
 
     public function index()
@@ -30,24 +30,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function getProvinces()
-    {
-        $dataObject = $this->provinceService->getProvinces();
-
-        return array_map(function ($data) {
-            return (object) [
-                'id' => $data['province_id'],
-                'name' => $data['province_name'],
-                'type' => $data['province_type']
-            ];
-        }, $dataObject['results']);
-    }
-
-
 
     public function create()
     {
-        $provinces = $this->getProvinces();
+        $provinces = $this->provinceController->getProvinces();
         if (!auth()->user()->company) {
             Alert::info('You must create a company first!', 'info');
             return redirect()->route('company.create');
@@ -94,7 +80,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $provinces = $this->getProvinces();
+        $provinces = $this->provinceController->getProvinces();
         return view('post.edit', compact('post', 'provinces'));
     }
 

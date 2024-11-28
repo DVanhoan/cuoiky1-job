@@ -80,7 +80,6 @@ class AccountController extends Controller
             return redirect()->back();
         }
 
-        //check if the password is valid
         $request->validate([
             'current_password' => 'required|min:8',
             'new_password' => 'required|min:8'
@@ -160,8 +159,6 @@ class AccountController extends Controller
             }
 
             $user->save();
-
-
 
             Alert::success('Updated ', 'Success Message');
             return redirect(route('account.index'));
