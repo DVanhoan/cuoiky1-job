@@ -14,11 +14,14 @@ class AuthorController extends Controller
     {
         $livePosts = null;
         $company = null;
+        $followRequests = null;
         $applications = null;
         $posts = null;
         if ($this->hasCompany()) {
             $company = auth()->user()->company;
             $posts = $company->posts()->paginate(10);
+
+            $followRequests = $company->followers()->where('status', 'pending')->get();
 
             if ($company->posts->count()) {
                 $livePosts = $posts->where('deadline', '>', Carbon::now())->count();
@@ -30,7 +33,8 @@ class AuthorController extends Controller
             'company' => $company,
             'applications' => $applications,
             'livePosts' => $livePosts,
-            'posts' => $posts
+            'posts' => $posts,
+            'followRequests' => $followRequests
         ]);
     }
 

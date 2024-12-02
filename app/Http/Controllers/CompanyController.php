@@ -135,6 +135,7 @@ class CompanyController extends Controller
         ]);
     }
 
+
     /**
      * Delete the company.
      */

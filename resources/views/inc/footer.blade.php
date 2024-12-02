@@ -106,7 +106,7 @@
     </div>
     <div class="chat-list">
         <div class="chat-item">
-            <img src="avatar1.jpg" alt="Avatar" class="chat-avatar" />
+            <img src="{{ asset('images/user-profile.png') }}" alt="Avatar" class="chat-avatar" />
         <div class="chat-content">
         <div class="item-header">
             <span class="chat-name">Mobile App</span>
@@ -134,14 +134,17 @@
     });
 
     document.addEventListener("click", function (event) {
+        const chatListContainer = document.querySelector(".chat-list-container");
         const chatContainer = document.querySelector(".chat-container");
         const chatButton = document.querySelector(".messages");
         const scrollToTopBtn = document.getElementById("scrollToTopBtn");
         if (
+            !chatListContainer.contains(event.target) &&
             !chatContainer.contains(event.target) &&
             !chatButton.contains(event.target) &&
             chatContainer.style.display === "block"
         ) {
+            chatListContainer.style.display = "none";
             chatContainer.style.display = "none";
             scrollToTopBtn.style.display = "block";
         }

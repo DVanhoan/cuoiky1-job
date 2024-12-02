@@ -61,4 +61,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(JobApplication::class);
     }
+
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class, 'conversation_members')
+            ->withPivot('is_admin', 'joined_at')
+            ->withTimestamps();
+    }
+
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function messageStatuses()
+    {
+        return $this->hasMany(MessageStatus::class);
+    }
+
+    public function getAvatarAttribute()
+    {
+        return $this->attributes['avatar'] ?? '/default-avatar.jpg';
+    }
 }

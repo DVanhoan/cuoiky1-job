@@ -86,6 +86,45 @@
           </div>
       </section>
 
+      <section class="author-company-info">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Follow Requests</h4>
+                        <div class="requests">
+                            @if(count($followRequests) == 0)
+                                <p>No follow requests</p>
+                            @else
+                                <ul class="list-group">
+                                    @foreach ($followRequests as $request)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>{{ $request->follower->name }} wants to follow your company.</span>
+                                            <div>
+                                                <form action="{{ route('account.follow.respond') }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <input type="hidden" name="follow_id" value="{{ $request->id }}">
+                                                    <input type="hidden" name="response" value="accepted">
+                                                    <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                                </form>
+                                                <form action="{{ route('account.follow.respond') }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <input type="hidden" name="follow_id" value="{{ $request->id }}">
+                                                    <input type="hidden" name="response" value="rejected">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
       <section class="author-posts">
         <div class="row my-4">
           <div class="col-lg-12 col-md-8 col-sm-12">

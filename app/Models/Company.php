@@ -19,4 +19,30 @@ class Company extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'company_id');
+    }
+
+    public function isFollowedBy($userId)
+    {
+        return $this->followers()->where('follower_id', $userId)->exists();
+    }
+
+    public function followersCount()
+    {
+        return $this->followers()->count();
+    }
+
+    public function approvedPosts()
+    {
+        return $this->posts()->where('approved', true);
+    }
+
+    public function getFollowStatus($userId)
+    {
+        $follow = $this->followers()->where('follower_id', $userId)->first();
+        return $follow ? $follow->status : null;
+    }
 }

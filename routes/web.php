@@ -9,6 +9,8 @@ use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\savedJobController;
+use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -82,6 +84,13 @@ Route::get('/search', [JobController::class, 'index'])->name('job.index');
 
 
 Route::middleware('auth')->prefix('account')->group(function () {
+
+    Route::get('follow', [FollowController::class, 'store'])->name('account.follow');
+    Route::post('follow/respond', [FollowController::class, 'respond'])->name('account.follow.respond');
+
+
+    Route::get('/messagePage', [MessageController::class, 'index'])->name('account.messages');
+
     Route::post('/update-profile-image', [AccountController::class, 'updateProfile'])->name('account.updateProfileImage');
     Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
     Route::get('overview', [AccountController::class, 'index'])->name('account.index');
@@ -111,6 +120,11 @@ Route::middleware('auth')->prefix('account')->group(function () {
 
 
     Route::group(['middleware' => ['role:author']], function () {
+
+        Route::post('follow/respond', [FollowController::class, 'respond'])->name('account.follow.respond');
+
+        Route::get('follows', [FollowController::class, 'dashboard'])->name('account.follows');
+
         Route::get('author-section', [AuthorController::class, 'authorSection'])->name('account.authorSection');
 
         Route::get('job-application/{id}', [JobApplicationController::class, 'show'])->name('jobApplication.show');
